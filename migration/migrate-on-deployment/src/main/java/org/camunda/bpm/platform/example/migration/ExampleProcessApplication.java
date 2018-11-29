@@ -58,7 +58,9 @@ public class ExampleProcessApplication extends ServletProcessApplication {
 
       for (ProcessDefinition latestDefinition : latestIncludedProcessDefinitions) {
         ProcessDefinition previousDefinition = getPreviousVersion(processEngine, latestDefinition);
-        migrateInstances(processEngine, previousDefinition, latestDefinition);
+        if (previousDefinition != null) {
+          migrateInstances(processEngine, previousDefinition, latestDefinition);
+        }
       }
     }
   }
